@@ -1,0 +1,28 @@
+---
+- hosts: worker03
+	become: yes
+	tasks:
+		# Upgrade packages
+		- name: upgrade apt packages
+			become: true
+			apt:
+				upgrade: yes
+				updates_cache: yes
+		#Check if reboot is required
+		- name: check if system reboot is required
+			become: true
+			stat:
+				path: /var/run/reboot-required
+			register: reboot_required
+	
+		# Send Discord message wehn reboot is required
+		- name: Send Discord message
+			uri:
+				url: "https://discord.com/api/webhooks/1121467127665274960/LNeysEz8XuEit4tOV2oNVN4-b9MRGYsL0op5zNaqc1sFOClzujxS3Vf6vki6onsblv2Q"
+				method: POST
+				body_format: json
+				body: '{"content": "Reboot required on {{ inventory_hostname }}"}'
+				headers:
+					Content-Type: application/json
+				status_code: 204
+			 when: reboot_required.stat.exists
