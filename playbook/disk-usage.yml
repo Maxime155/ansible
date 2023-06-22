@@ -1,4 +1,5 @@
-- hosts: "{{ hosts }}"
+---
+- hosts: worker03
   tasks:
     - name: Get disk usage
 	command: df -h
