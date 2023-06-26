@@ -4,4 +4,6 @@
   become: true
   tasks:
     - name: Execution de la commande
+      become: true
       command: swapoff -a
+      become_method: sudo
