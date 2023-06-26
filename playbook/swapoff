@@ -1,0 +1,7 @@
+---
+- name: Execution commande swapoff -a
+  hosts: all
+  become: true
+  tasks:
+    - name: Execution de la commande
+      command: swapoff -a
