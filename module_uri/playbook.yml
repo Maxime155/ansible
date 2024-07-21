@@ -1,0 +1,7 @@
+- name: uri
+  hosts: all
+  tasks: 
+  - name: test du module URI
+    uri:
+      url: https://google.fr
+      method: GET

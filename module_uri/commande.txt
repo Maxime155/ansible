@@ -1,0 +1,17 @@
+c'est l'équivalent de curl. Faire des requêtes en http et https.
+HEADER_ -> paramètre pour passer les requêtes
+body -> si activation du format json récupérer une variable
+body_format -> format du body json / raw
+creates -> s'il existe tache non lancée
+dest / validate_certs / user / password
+follow_redirects -> suivre redirection
+force_basic_auth -> forcer le basic auth
+headears -> ajout du header en format yaml
+method -> GET / POST / DELETE / PUT / HEAD / PATCH / TRACE
+others -> autre argument pour le module file (fichier créé)
+removes -> si le fichier n'existe pas on ne fait pas la tache
+return_content -> pour récupérer le contenu
+status_code -> 200, 301, ...
+timeout -> en seconde
+url -> target
+
