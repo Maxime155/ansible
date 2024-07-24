@@ -1,0 +1,13 @@
+- name: playbook rsync
+  hosts: node1
+  become: yes
+  tasks: 
+  - name: install rsync
+    apt: 
+      name: rsync
+      state: present
+
+  - name: sync of file
+    synchronize:
+      src: max.txt
+      dest: /tmp/max.txt

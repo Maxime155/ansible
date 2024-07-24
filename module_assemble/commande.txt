@@ -1,0 +1,11 @@
+concatener des fichiers
+
+PARAMETERS
+backup -> sauvegarde fichier avant changement
+decrypt -> déchiffrer automatiquement par défaut ou pas le vault
+delimiter -> séparation entre chaque fichier
+dest -> la destination (fichier)
+regexp -> regular expression de pattern des fichiers sources
+remote_src -> fichier déjà present ou pas
+
+group, src, validate

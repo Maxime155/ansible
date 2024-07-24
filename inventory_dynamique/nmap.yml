@@ -1,0 +1,5 @@
+plugin: nmap
+strict : false
+address: 192.168.2.0/24
+#ansible-inventory -i nmap.yml --list  
+

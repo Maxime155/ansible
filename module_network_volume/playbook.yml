@@ -1,0 +1,34 @@
+- name: module docker_image
+  hosts: node1
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: docker.io,python3-docker
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+  - name: create network
+    docker_network:
+      name: maxime
+      connected:
+      - c1
+      ipam_config:
+      - subnet: 172.23.12.0/24
+        gateway: 172.23.12.1
+        iprange: 172.23.12.0/24
+  - name: create container
+    docker_container:
+      name: c1
+      image: nginx:latest
+      networks: 
+      - name: maxime
+        #- name: create network for container
+        #docker_network:
+        #name: maximec1
+        #connected: c1

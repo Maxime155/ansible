@@ -1,0 +1,7 @@
+définir des facts (gather facts)
+
+PARAMETRES
+cacheable -> ajouté au cache (défaut non)
+key_value -> définition de la clef et de la valeur prise
+
+

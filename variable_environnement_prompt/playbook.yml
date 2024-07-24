@@ -1,0 +1,13 @@
+- name: playbook environnement
+  hosts: node2
+  vars_prompt:
+    - name: version
+  environment:
+    VERSION: "{{ version }}"
+  tasks:
+  - name: print de la variable
+    command: "echo ${VERSION}"
+    register: __output
+  - name: debug
+    debug:
+      var: __output

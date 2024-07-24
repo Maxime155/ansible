@@ -1,0 +1,17 @@
+PREREQUIS:
+- docker
+- python3-docker ou pip3 install docker
+
+PARAMETRES NETWORK
+appends -> ajouter un réseau aux réseaux des conteneurs
+connected -> affecter des conteneurs existants à un réseau unique
+docker_host -> accès distant ou local en fonction de la socket unix/tcp/ssh
+ipam_config -> configuration du réseua
+
+name, state
+
+PARAMETRES VOLUME
+driver -> local/nfs
+driver_options -> configuration du driver
+recreate -> never /always
+name, state

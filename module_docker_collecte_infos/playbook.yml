@@ -1,0 +1,30 @@
+- name: module docker_image
+  hosts: node1
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: docker.io,python3-docker
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: run
+    docker_container:
+      name: "n{{ item }}"
+      image: nginx:latest
+      state: started
+    with_sequence: count=3
+    register: __container_infos
+  - name: container list
+    docker_host_info:
+      containers: True
+    register: __docker_info
+  - name: debug
+    debug:
+      var: __docker_info

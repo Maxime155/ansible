@@ -1,0 +1,12 @@
+- name: impact cache
+  hosts: node1
+  tasks:
+  - name: date without cache
+    shell: "date"
+    register: shell_date
+  - set_fact:
+     date: "{{ shell_date.stdout }}"
+
+  - name: print
+    debug:
+      var: date

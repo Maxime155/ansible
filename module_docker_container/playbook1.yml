@@ -1,0 +1,41 @@
+- name: module docker_image
+  hosts: node1
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: docker.io,python3-docker
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+  - name: copy image
+    copy:
+      src: app/
+      dest: /tmp/
+  - name: build
+    docker_image:
+      name: myapp
+      tag: v1.0
+      source: build
+      build: 
+        path: /tmp/
+        dockerfile: Dockerfile
+        cache_from:
+          - ubuntu:24.04
+  
+  - name: container list
+    docker_host_info:
+      containers: True
+    register: __docker_info
+
+  - name: remove all containers
+    docker_container:
+      # filtre jinja on récupére le nom et on enlève le / 
+      name: '{{ item.Names[0] | regex_replace("^/", "") }}'
+      state: absent
+    loop: '{{ __docker_info.containers }}'

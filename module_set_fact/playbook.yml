@@ -1,0 +1,14 @@
+- name: gather fact
+  hosts: node1
+  tasks:
+  - name: commande
+    command: "echo $USER"
+    register: __output
+  
+  - name: set fact 
+    set_fact:
+      monfact: "{{ __output.stdout }}"
+  
+  - name: debug
+    debug: 
+      var: monfact

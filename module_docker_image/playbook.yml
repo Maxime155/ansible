@@ -1,0 +1,45 @@
+- name: module docker_image
+  hosts: all
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: docker.io,python3-docker
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+  - name: Pull an image
+    docker_image:
+      name: alpine
+      tag: latest
+      source: pull
+  - name: Tag an image
+    docker_image:
+      name: alpine
+      tag: latest
+      repository: myregistry/monimage:v1.0
+      source: pull
+  - name: copy files
+    file: 
+      path: /tmp/build
+      state: directory
+  - name: copy image
+    copy:
+      src: app/
+      dest: /tmp/
+  - name: build
+    docker_image:
+      name: imgbuild
+      tag: v1.0
+      source: build
+      build: 
+        path: /tmp/
+        dockerfile: Dockerfile
+        cache_from:
+          - ubuntu:24.04
+

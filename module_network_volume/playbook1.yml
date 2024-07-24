@@ -1,0 +1,39 @@
+- name: module docker_image
+  hosts: node1
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: docker.io,python3-docker
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+        #- name: create volume v1
+        #docker_volume:
+        #name: v1
+  - name: create directory volume
+    file:
+      path: /tmp/data
+      state: directory
+  - name: Create a volume
+    docker_volume:
+      name: maxime_data
+      driver: local
+      driver_options:
+        # résolution de nom
+        o: bind
+        type: none
+        device: /tmp/data
+  - name: create container
+    docker_container:
+      name: c1
+      image: nginx:latest
+      networks: 
+      - name: maxime
+      volumes:
+      - maxime_data:/etc/

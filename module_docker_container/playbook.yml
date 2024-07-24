@@ -1,0 +1,73 @@
+- name: module docker_image
+  hosts: node1
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: docker.io,python3-docker
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+  - name: copy image
+    copy:
+      src: app/
+      dest: /tmp/
+  - name: build
+    docker_image:
+      name: myapp
+      tag: v1.0
+      source: build
+      build: 
+        path: /tmp/
+        dockerfile: Dockerfile
+        cache_from:
+          - ubuntu:24.04
+  - name: run
+    docker_container:
+      name: myapp
+      image: myapp:v1.0
+      state: started
+      restart_policy: always
+      ports: 
+      - 8888:8080
+        #healthcheck:
+        #test: ["CMD", "curl", "http://127.0.0.1:8080"]
+        #interval: 5s
+        #timeout: 10s
+        #retries: 3
+        #start_period: 10s
+    register: __container_infos
+  - name: iter container
+    docker_container:
+      name: "myapp-{{ item }}"
+      image: "myapp:v1.0"
+      state: started
+      ports:
+      - "999{{ item }}:8080"
+    with_sequence: count=2
+  - name: print output
+    debug:
+      var: __container_infos.container.NetworkSettings.IPAddress
+    
+        #- name: wait for instance
+        #uri:
+        #url: http://127.0.0.1:8888/select
+        #status_code: 200
+        #register: result
+        #until: result.status == 200
+        #retries: 50
+        #delay: 1
+
+        #- name: run
+        #docker_container:
+        #name: c2
+        #image: ubuntu:latest
+        #state: started
+        # option -d 
+        #detach: no
+        #command: sleep 10

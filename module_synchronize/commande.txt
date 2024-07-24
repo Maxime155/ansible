@@ -1,0 +1,27 @@
+utilisation de rsync > source + destination
+intérêt ? qualité de rsynch (mise à jour, risque de coupure)
+plus performant que copy
+condition -> installer rsync sur les machines
+
+Parametres
+Archive -> maintien des permissions
+checksum -> vérification à base de checksum
+compress -> compression pour le transfert
+copy_links -> copie des liens symboliques
+delete -> supprime les fichiers en trop déjà présents sur la destination
+dirs -> transfer uniquement le répertoire mais sant récursivité
+existing_only -> ne créé pas les nouveaux fichiers
+links -> copie les liens symboliques en tant que liens symboliques
+partial -> conserve les fichiers partiellement chargés
+perms -> préserve les permissions
+recursive -> entre dans les sous répertoires
+rsynch_opts -> options de rsync complémentaires
+rsync_path -> chemin vers le binaire rsync
+rsync_timeout -> timeout de la commande rsync
+set_remote_user -> pour préciser un user à utiliser
+times -> préserve la date de modifications
+use_ssh_args -> ajout d'arguments ssh complémentaires
+verify_host -> vérifie la clé du host
+
+src, owner, mode, group (yes/no), dest, dest_port
+

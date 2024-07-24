@@ -1,0 +1,30 @@
+objectif -> construction, bluid et push d'images docker
+
+Prérequis:
+- docker
+- python3-docker ou pip3 install docker
+
+PARAMETRES
+api_version -> version de l'api docker (docker info)
+archive_path -> cas d'un image ne tar
+
+build -> construire une image
+  args -> clé/valeur
+  cache_from image -> source utilisé
+  container_limits -> limite applicable pour le build
+    cpusetcpus -> CPU
+    cpushares -> poids du CPU
+    memory -> mémoire maximun
+    memswap -> mémoire total (mem + swap)
+  dockerfile -> nom du fichier 
+  /etc/hosts -> utilisé lors du build
+  http_timeout ->  pour le build
+  network -> pour le run 
+  no_cache -> ne pas utiliser du cache
+  path -> chemin de contexte pour le build
+  pull -> downlaod du/des FROM
+  rm -> suppression image intermediaire
+  target -> image finale
+  use_config_proxy -> utilisation d'un proxy
+
+
