@@ -1,0 +1,20 @@
+- name: install nfs_server
+  hosts: nfs_server
+  become: yes
+  roles:
+  - nfs_server
+  tags:
+  - nfs_server
+
+- name: install swarm cluster
+  hosts: docker
+  become: yes
+  gather_facts: yes
+  roles:
+  - docker
+  - swarm
+  - tooling
+  - nfs_client
+  tags: 
+  - docker
+

@@ -1,0 +1,7 @@
+Objectif -> Parcourir des fichiers de variables identiques
+
+Exemples:
+- vhost nginx
+- BDD
+- stacks à instancier
+

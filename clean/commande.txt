@@ -1,0 +1,15 @@
+Ansible ne possède pas de BDD > diff Terraform
+
+Ansible possède pas de source de vérité stricte
+	un user déjà crée, un fichier ne sera pas supprimé
+
+Mais comment cleaner quand on débute
+- avoir une liste de référence > les variables ansible
+- avoir une liste existante > la collecte via une task
+- comparer et virer le surplus
+Pour cela, un exemple
+- module shell + set_fact -> lister de l'existant
+- module template -> création/maj des fichiers légitimes
+- module file -> pour le clean
+- changed_when -> traitement de l'idempotence
+

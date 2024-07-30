@@ -1,0 +1,1 @@
+mavariable: "{{ vault_mavariable }}"

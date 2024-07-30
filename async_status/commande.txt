@@ -1,0 +1,11 @@
+Objectifs -> tache long mise en background
+Ansible lance une tache et reste dessus
+Maintien de la connexion ssh (évite le timeout)
+
+2 cas 
+- poll > 0 : reste en connexion mais sur la task
+- poll = 0 : passe en background et passe à la tache suivante
+
+PARAMETRES
+poll -> fréquence de check
+async -> durée accordée à la tâche

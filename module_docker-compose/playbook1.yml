@@ -1,0 +1,32 @@
+- name: module docker_image
+  hosts: node1
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: 
+      - docker.io
+      - python3-docker
+      - docker-compose
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: test docker-compose
+    docker_compose:
+      project_name: mynginx
+      definition:
+        version: "3.7"
+        services:
+          c1:
+            image: nginx:latest
+    register: __docker_compose
+
+  - name: output
+    debug:
+      var: __docker_compose

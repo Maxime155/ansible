@@ -1,0 +1,18 @@
+objectif -> chiffrer les secrets
+
+Commande ansible-vault
+create -> créé et ouvre un fichier dans un éditeur, sera chiffré à la fermeture
+decrypt -> déchiffre un fichier/variable (ne pas oublier de rechiffrer après)
+edit -> ouvre un fichier chiffré dans un éditeur (déchiffré)
+view -> voir le contenu d'un fichier chiffré
+encrypt -> chiffre un fichier
+# ne pas utilisé
+encrypt_string -> chiffré avec une variable
+rekey -> reencrypt avec un nouveau secret
+
+type de données encryptées
+group variable, host variable, variable files, tasks files, handlers files, binary files
+
+ansible-vault create group_vars/all/variable.yml
+ansible-vault view group_vars/all/variable.yml
+ansible-vault edit group_vars/all/variable.yml

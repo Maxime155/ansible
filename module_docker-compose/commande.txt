@@ -1,0 +1,15 @@
+objectifs -> gérer les docker-compose
+
+PARAMETRES
+build -> avec construction à base d'un dockerfile - path
+definition -> pour configurer le docker-compose
+dependencies -> dépendance d'un autre service
+docker_host -> socket docker (unix/tcp/ssh)
+files -> liste des docker-compose file
+nocache -> build sans cache
+pull -> puller en priorité les images
+remove_images -> supprimer l'image local
+remove_orphans -> supprimer les conteneurs non compris dans le docker-compose
+remove_volumes -> suppression des volumes
+scale -> définition du sclaing
+services, state -> gestion du up, stop, restart

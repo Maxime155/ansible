@@ -1,0 +1,13 @@
+- name: install bastion
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  roles:
+  - fw_bastion
+  - fw_all
+
+- name: other servers
+  hosts: server
+  become: yes 
+  roles:
+  - fw_all

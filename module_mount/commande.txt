@@ -1,0 +1,23 @@
+PARAMETRES
+advertise_addr -> adresse référencée auprès des autres nodes
+autolock_managers -> vérouillage des datas des managers via une clée
+ca_cert / ca_force_rotate / client_cert / client_key
+default_addr_pool -> range d'ip utilisé par défaut
+docker_host -> socket docker (unix/tcp/ssh)
+election_tick -> délai sans leader qui provoque une éléction
+heartbeat_tick -> délai de check
+join_token -> lorsque state vaut join, token pour rejoindre le cluster (manager/worker)
+keep_old_snapshots -> nombre de snapshots à conserver
+listen_addr -> addresse d'écoute de la socket
+name -> nom du cluster
+node_cert_expiry -> d'élai d'expiration des certificats des nodes/workers (3 mois)
+node_id -> pour supprimer un noeud par son ID (state remove)
+remote_addrs -> list ou string des managers du cluster
+rotate_manager_token -> activation de la rotation des tokens pour les managers
+rotate_worker_token -> activation de la rotation des tokens pour les workers
+snapshot_interval -> délai entre les snapshots
+state -> present, absent, join, remove, inspect
+
+OUTPUT
+ip / tokens
+

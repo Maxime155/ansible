@@ -1,0 +1,20 @@
+- src: git@gitlab.com:ansible_maxime/ansible-playbook.git
+  name: ansible-playbook
+  version: main
+  scm: git
+
+- src: git@gitlab.com:ansible_maxime/ansible-role-docker.git
+  name: docker
+  version: main
+  scm: git
+
+- src: git@gitlab.com:ansible_maxime/ansible-role-swarm.git
+  name: swarm
+  version: main
+  scm: git
+
+- src: git@gitlab.com:ansible_maxime/ansible-role-tooling.git
+  name: tooling
+  version: main
+  scm: git
+

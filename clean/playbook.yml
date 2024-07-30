@@ -1,0 +1,38 @@
+- name: clean
+  hosts: all
+  tasks: 
+  - name: create directory
+    file:
+      path: "{{ my_dir }}"
+      state: directory
+  
+  - name: list of files in the directory
+    shell: "ls {{ my_dir }}"
+    register: __files_list_before
+    changed_when: __files_list_before.rc != 0 
+  
+  - name: print __files_list_before
+    debug:
+      var: __files_list_before.stdout_lines
+
+  - name: add/update files from my_files
+    template:
+      src: mytemplate.txt.j2
+      dest: "{{ my_dir }}/{{ item }}.txt"
+    with_items: "{{ my_files }}"
+
+  - name: format list of files with myfiles var
+    set_fact:
+      __list_of_files_trusted: "{{ __list_of_files_trusted | default([]) }} + [ '{{ item }}.txt' ]"
+    with_items: "{{ my_files }}"
+
+  - name: print trusted list 
+    debug:
+      var: __list_of_files_trusted
+
+  - name: clean older files
+    file:
+      path: "{{ my_dir }}/{{ item }}"
+      state: absent
+    when: item not in __list_of_files_trusted
+    with_items: "{{ __files_list_before.stdout_lines }}"

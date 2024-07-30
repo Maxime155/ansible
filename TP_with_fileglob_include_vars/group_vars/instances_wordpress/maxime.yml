@@ -1,0 +1,8 @@
+deploy_wordpress_name: "maxime"
+deploy_wordpress_url: "maxime.swarm"
+deploy_wordpress_mariadb_user: "mariadb_maxime"
+deploy_wordpress_mariadb_password: "password1"
+deploy_wordpress_mariadb_password_user: "password"
+  #deploy_wordpress_mariadb_password: "{{ deploy_wordpress_mariadb_password_vault }}"
+  #deploy_wordpress_mariadb_password_user: "{{ deploy_wordpress_mariadb_password_user_vault }}"
+deploy_wordpress_container_port: "80"

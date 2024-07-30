@@ -1,0 +1,36 @@
+- name: module docker_image
+  hosts: node1
+  become: yes
+  tasks:
+  - name: install docker & docker for python
+    apt: 
+      name: 
+      - docker.io
+      - python3-docker
+      - docker-compose
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: start docker
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: copy app directory
+    copy:
+      src: app/docker-compose.yml
+      dest: /tmp/
+        
+  - name: test docker-compose
+    docker_compose:
+      project_src: /tmp/
+      state: present
+    #Nom du service dans le docker-compose
+      scale:
+        app: 4
+    register: __docker_compose
+
+  - name: output
+    debug:
+      var: __docker_compose

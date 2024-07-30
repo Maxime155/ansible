@@ -1,0 +1,26 @@
+- name: local test
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - name: Copy the script
+    copy: 
+      src: takeyourtime.sh
+      dest: "/tmp"
+  - name: Execute the script
+    shell:
+      "chmod a+x /tmp/takeyourtime.sh && /tmp/takeyourtime.sh 10"
+    async: 100
+    poll: 5
+    register: __output_script
+  
+  - name: test
+    shell: echo toto
+
+  - name: Debug the output script
+    debug:
+      var: __output_script  
+  
+  - name: Some task just to debug
+    debug: 
+      var: __output_script.stdout_lines
+

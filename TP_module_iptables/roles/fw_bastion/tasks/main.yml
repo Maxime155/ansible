@@ -1,0 +1,22 @@
+---
+# tasks file for roles/fw_bastion
+- name: install iptables
+  apt: 
+    name: iptables
+    state: present
+
+- name: for bastion - accept only the laptop
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: 22
+    source: 192.168.2.0/24
+    jump: ACCEPT
+
+- name: bastion can go everywhere with ssh
+  iptables: 
+    chain: OUTPUT
+    protocol: tcp
+    destination_port: 22
+    jump: ACCEPT
+    state: present

@@ -1,0 +1,23 @@
+- name: install nfs_server
+  hosts: nfs_server
+  become: yes
+  roles:
+  - nfs_server
+  tags:
+  - nfs_server
+
+- name: install swarm cluster
+  hosts: docker
+  become: yes
+    #vars_files:
+    #- group_vars/instance_wordpress/maxime.yml
+    #- group_vars/instance_wordpress/vault.yml
+  gather_facts: yes
+  roles:
+  - docker
+  - swarm
+  - tooling
+  - deploy_wordpress
+  tags: 
+  - docker
+

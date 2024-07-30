@@ -1,0 +1,10 @@
+all:
+  children:
+    bastion:
+      hosts:
+        node1:
+    server:
+      hosts:
+        node2: 
+        worker01:
+            

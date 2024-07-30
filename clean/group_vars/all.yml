@@ -1,0 +1,6 @@
+my_files:
+  - file1
+  - file2
+  - file3
+  - file4
+my_dir: "/tmp/maxime"
