@@ -1,0 +1,10 @@
+Se passer d'un inventaire en se connectant à AWS
+
+Prérequis -> sudo apt install python3-pip, pip3 install boto boto3 --user
+
+configuration ansible
+/etc/ansible/ansible.cfg
+~/.ansible/ansible.cfg
+ansible_dir/ansible.cfg
+
+utilisation d'un plugin

@@ -1,0 +1,7 @@
+---
+# defaults file for roles/mariadb
+mariadb_version: "10.5"
+mariadb_listen_address: "*"
+mariadb_params: ""
+mariadb_data_dir: "/var/lib/mysql"  
+

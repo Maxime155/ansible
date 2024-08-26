@@ -1,0 +1,33 @@
+- name: callbacks
+  hosts: all
+  become: yes
+  tasks:
+  - name: ping
+    ping:
+
+  - name: task1
+    debug: 
+      msg: "Start playbook" 
+
+  - name: task2
+    apt:
+      name: vim
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: task3
+    file:
+      path: /tmp/maxime.txt
+      state: touch
+  - name: task4
+    apt:
+      name: git
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+  - name: task5 
+    debug:
+      msg: "end"
+
+

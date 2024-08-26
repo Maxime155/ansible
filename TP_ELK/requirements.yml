@@ -1,0 +1,5 @@
+- name: elasticsearch
+  src: elastic.elasticsearch
+  version: v7.17.0
+
+#ansible-galaxy install -r requirement.yml -p roles

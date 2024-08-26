@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS {{ item.table }} (cl int);
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS prepare_data;
+CREATE PROCEDURE prepare_data()
+
+BEGIN
+  DECLARE i INT DEFAULT 100;
+  WHILE i < {{ item.random }} DO
+    INSERT INTO {{ item.table }} (cl) VALUES (i);
+    SET i = i + 1;
+  END WHILE;
+END$$
+
+DELIMITER ;
+
+CALL prepare_data();
+DROP PROCEDURE IF EXISTS prepare_data;

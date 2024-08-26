@@ -1,0 +1,6 @@
+Objectif :
+- créer un ensemble de serveurs
+- Ajouter des mariadb
+- Injecter des données de manière aléatoire
+- Récupérer des infos (facts et commandes)
+- valorisation par web, mail et par BDD

@@ -1,0 +1,13 @@
+- name: install eS
+  become: yes
+  user: root
+  hosts: elasticsearch
+  roles: 
+    - elasticsearch
+    - logstash
+- name: install kibana
+  become: yes
+  user: root
+  hosts: kibana
+  roles: 
+    - kibana

@@ -1,0 +1,9 @@
+- name: install our MariaDB server
+  become: yes
+  hosts: dbserver
+  roles:
+    - mariadb
+  vars:
+    volumes_disks:
+      - {disk: '/dev/sdb', path: '/data', owner: "root"}
+    mariadb_data_dir: /data/mariadb

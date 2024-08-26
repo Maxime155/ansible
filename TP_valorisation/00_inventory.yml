@@ -1,0 +1,7 @@
+all:
+  hosts:
+    node2:
+      ansible_host: 192.168.2.44 
+    worker01:
+    node1:
+            
